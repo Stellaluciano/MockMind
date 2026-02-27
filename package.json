@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint . --ext .ts",
+    "sync:question-bank": "node scripts/sync-question-bank.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^9.20.0",

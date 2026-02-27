@@ -20,3 +20,14 @@ You can update the bank in either way:
 
 - Add, edit, reorganize, and remove interview questions only in `QUESTION_BANK.md`.
 - Keep `README.md` as usage guidance; do not place the full bank content here.
+
+
+## Sync Command
+
+To update `QUESTION_BANK.md` from the external source automatically, run:
+
+```bash
+npm run sync:question-bank
+```
+
+If remote access is blocked in your network environment, edit `QUESTION_BANK.md` manually.

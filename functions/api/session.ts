@@ -20,5 +20,7 @@ export const onRequestPost: PagesFunction<{ OPENAI_API_KEY?: string }> = async (
   const interviewer_name = randomInterviewerName();
   const greeting_text = `Hi, I am ${interviewer_name}. Welcome to your ${difficulty} ${role} mock interview. I will keep a ${style} tone. Please introduce yourself in 60 seconds.`;
 
-  return Response.json({ session_id, avatar_url, interviewer_name, greeting_text });
+  const avatar_source = generatedAvatar ? 'generated' : 'bundled';
+
+  return Response.json({ session_id, avatar_url, avatar_source, interviewer_name, greeting_text });
 };
