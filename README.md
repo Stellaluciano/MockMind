@@ -52,24 +52,6 @@ npm run build
 npx wrangler pages dev dist
 ```
 
-## Deploy to Cloudflare Pages
-
-1. Create a new Pages project from this repo.
-2. Build command: `npm run build`
-3. Build output directory: `dist`
-4. Ensure `wrangler.toml` is present.
-5. Set environment variables/secrets in Cloudflare:
-
-- `OPENAI_API_KEY` (secret)
-- `OPENAI_TEXT_MODEL` (optional, default `gpt-4o-mini`)
-- `OPENAI_TTS_MODEL` (optional, default `gpt-4o-mini-tts`)
-- `OPENAI_VOICE` (optional, default `alloy`)
-
-Using Wrangler CLI secret command:
-
-```bash
-npx wrangler secret put OPENAI_API_KEY
-```
 
 ## Scripts
 
