@@ -20,6 +20,7 @@ interface ChatMessage {
 interface SessionResponse {
   session_id: string;
   avatar_url: string;
+  avatar_source?: 'generated' | 'bundled';
   greeting_text: string;
   interviewer_name: string;
 }
@@ -177,6 +178,9 @@ async function startSession() {
 
   dom.avatar.src = state.avatarUrl;
   dom.interviewerName.textContent = state.interviewerName;
+  if (data.avatar_source === 'bundled') {
+    dom.captions.textContent = 'Using bundled avatar fallback. Configure OPENAI_API_KEY to enable photorealistic generation.';
+  }
   dom.sessionConfig.classList.add('hidden');
   dom.chatLog.innerHTML = '';
   state.messages = [];
@@ -318,6 +322,9 @@ async function generateAvatar() {
     const data = await res.json();
     state.avatarUrl = data.avatar_url;
     dom.avatar.src = state.avatarUrl;
+    if (data.source === 'bundled') {
+      dom.captions.textContent = 'Avatar generation unavailable. Kept bundled avatar fallback.';
+    }
   } catch {
     const fallbackIndex = Math.floor(Math.random() * 8) + 1;
     state.avatarUrl = `/avatars/avatar-${fallbackIndex}.svg`;

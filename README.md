@@ -1,68 +1,33 @@
-# gpt-voice-mock-interviewer
+# Interview Question Bank Guide
 
-A stateless Cloudflare Pages + Functions mock interview web app with streaming interviewer captions + voice, browser mic input (Web Speech API), typed fallback, and bundled realistic avatars.
+This repository is maintained in question-bank mode.
 
-## Features
+## Fixed Question Bank File
 
-- **Session setup**: role preset (ML Engineer/Infra/Research/Quant), difficulty, style.
-- **Chat UX**: interviewer + candidate bubbles with pinned live captions.
-- **Interviewer voice**: edge endpoint returns streaming text chunks and an audio payload for each turn.
-- **Candidate input**:
-  - Browser microphone speech-to-text (Web Speech API, if available)
-  - Typed text fallback
-- **Controls**: mute/unmute, pause/resume, repeat question, next question.
-- **Accessibility**: always-visible captions, keyboard shortcuts (Enter/M/N).
-- **Privacy note**: no login, no DB, stateless edge processing only.
-- **Avatar system**:
-  - 8 bundled avatars in `public/avatars`
-  - optional generated avatar via `/api/avatar` if image generation is configured
+Please maintain all interview questions in the following file:
 
-## Architecture
+- `QUESTION_BANK.md`
 
-- **Frontend**: Vite + TypeScript + vanilla CSS (`src/`)
-- **Edge API**: Cloudflare Pages Functions (`functions/api/*`)
-- **Security**: OpenAI key only in Cloudflare secrets/env, never in browser bundle
+## Update Methods
 
-## API Endpoints
+You can update the bank in either way:
 
-- `POST /api/session`
-  - input: `{ rolePreset, difficulty, style }`
-  - output: `{ session_id, avatar_url, interviewer_name, greeting_text }`
-- `POST /api/chat` (streaming NDJSON fallback transport)
-  - input: `{ session_id, conversation_history, candidate_message, settings }`
-  - output stream chunks:
-    - `{ type: "text", chunk }`
-    - `{ type: "audio", audio_url }` (if TTS available)
-    - `{ type: "error", message }`
-    - `{ type: "done" }`
-- `POST /api/avatar`
-  - output: generated avatar data URL if configured, otherwise bundled avatar path
+1. **Manual editing** of `QUESTION_BANK.md`
+2. **Reference/sync from the external bank**:
+   - <https://github.com/Stellaluciano/LLM-Interview-Question-Bank/blob/main/QUESTION_BANK.md>
 
-## Local Development
+## Conventions
+
+- Add, edit, reorganize, and remove interview questions only in `QUESTION_BANK.md`.
+- Keep `README.md` as usage guidance; do not place the full bank content here.
+
+
+## Sync Command
+
+To update `QUESTION_BANK.md` from the external source automatically, run:
 
 ```bash
-npm install
-npm run dev
+npm run sync:question-bank
 ```
 
-This runs the static Vite app. For full Cloudflare Function integration locally, use:
-
-```bash
-npm run build
-npx wrangler pages dev dist
-```
-
-
-## Scripts
-
-- `npm run dev` - Vite local dev
-- `npm run build` - Production build
-- `npm run preview` - Preview static build
-- `npm run typecheck` - TypeScript check
-- `npm run lint` - ESLint
-
-## Notes
-
-- If mic permission is denied/unavailable, app gracefully falls back to typing.
-- If edge realtime/audio generation fails, app continues in text-only mode.
-- No user data is persisted server-side.
+If remote access is blocked in your network environment, edit `QUESTION_BANK.md` manually.

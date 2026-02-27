@@ -3,6 +3,7 @@ interface Env {
   OPENAI_TEXT_MODEL?: string;
   OPENAI_TTS_MODEL?: string;
   OPENAI_VOICE?: string;
+  OPENAI_IMAGE_MODEL?: string;
 }
 
 export async function generateInterviewerText(prompt: string, env: Env): Promise<string> {
@@ -62,7 +63,7 @@ export async function generateAvatarDataUrl(prompt: string, env: Env): Promise<s
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      model: 'gpt-image-1',
+      model: env.OPENAI_IMAGE_MODEL || 'gpt-image-1',
       prompt,
       size: '1024x1024'
     })
@@ -70,8 +71,12 @@ export async function generateAvatarDataUrl(prompt: string, env: Env): Promise<s
 
   if (!resp.ok) return null;
   const data = (await resp.json()) as any;
-  const b64 = data.data?.[0]?.b64_json;
-  return b64 ? `data:image/png;base64,${b64}` : null;
+  const image = data.data?.[0];
+  const b64 = image?.b64_json;
+  if (b64) return `data:image/png;base64,${b64}`;
+
+  const imageUrl = image?.url;
+  return typeof imageUrl === 'string' ? imageUrl : null;
 }
 
 function fallbackText(prompt: string): string {
