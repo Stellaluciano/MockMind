@@ -4,7 +4,8 @@ import { generateAvatarDataUrl } from '../_lib/openai';
 export const onRequestPost: PagesFunction<{ OPENAI_API_KEY?: string }> = async ({ request, env }) => {
   const body = (await request.json().catch(() => ({}))) as { session_id?: string; settings?: { rolePreset?: string } };
 
-  const prompt = `Hyper-realistic portrait photo of a professional interviewer, neutral office background, cinematic lighting, looking at camera.`;
+  const role = body.settings?.rolePreset || 'ML Engineer';
+  const prompt = `Ultra-realistic professional headshot of an AI interviewer for a ${role} interview, natural skin texture, studio photo quality, neutral office background, 85mm lens, sharp eyes, soft cinematic lighting, no illustration, no cartoon, no painting, no text, no watermark.`;
   const generated = await generateAvatarDataUrl(prompt, env);
 
   if (generated) {
