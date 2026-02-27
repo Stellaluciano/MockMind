@@ -1,0 +1,119 @@
+:root {
+  color-scheme: dark;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  background: #090b12;
+  color: #e9ebf6;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+
+.layout {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  height: 100vh;
+}
+
+.left-panel {
+  border-right: 1px solid #22283d;
+  padding: 1.2rem;
+  background: linear-gradient(180deg, #0d1220, #0a0f1a);
+}
+
+.avatar {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 18px;
+  border: 1px solid #364161;
+}
+
+.wave {
+  margin-top: .6rem;
+  color: #8694c6;
+  letter-spacing: 2px;
+}
+
+.wave.active {
+  color: #60f0be;
+  animation: pulse .7s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: .3; }
+  50% { opacity: 1; }
+  100% { opacity: .3; }
+}
+
+.chat-panel {
+  display: grid;
+  grid-template-rows: auto 1fr auto auto auto;
+  padding: 1rem;
+  gap: .8rem;
+}
+
+.session-config {
+  display: flex;
+  gap: .8rem;
+  align-items: end;
+  flex-wrap: wrap;
+  background: #0f1524;
+  border: 1px solid #26304a;
+  border-radius: 12px;
+  padding: .8rem;
+}
+
+.session-config.hidden { display: none; }
+label { display: grid; gap: .3rem; font-size: .9rem; color: #b6c0df; }
+select, input {
+  background: #141d31;
+  color: #eff3ff;
+  border: 1px solid #2f3958;
+  border-radius: 10px;
+  padding: .55rem .7rem;
+}
+
+.chat-log {
+  overflow-y: auto;
+  padding-right: .4rem;
+}
+
+.bubble {
+  max-width: min(780px, 90%);
+  padding: .75rem .85rem;
+  border-radius: 12px;
+  margin-bottom: .65rem;
+  line-height: 1.4;
+}
+
+.bubble.interviewer { background: #161f35; border: 1px solid #2e3a5f; }
+.bubble.candidate { background: #1f3d35; border: 1px solid #2f6a59; margin-left: auto; }
+
+.controls { display: flex; gap: .6rem; flex-wrap: wrap; }
+
+.captions {
+  min-height: 60px;
+  border: 1px solid #2a3555;
+  background: #11192b;
+  border-radius: 10px;
+  padding: .75rem;
+}
+
+.input-bar { display: grid; grid-template-columns: auto 1fr auto; gap: .6rem; }
+
+.primary-btn, .secondary-btn {
+  border: 0;
+  border-radius: 10px;
+  padding: .6rem .85rem;
+  cursor: pointer;
+}
+
+.primary-btn { background: #5865f2; color: white; }
+.secondary-btn { background: #293249; color: #f0f3ff; }
+
+.privacy-note, .shortcuts { color: #b8c2e5; font-size: .88rem; }
+
+@media (max-width: 980px) {
+  .layout { grid-template-columns: 1fr; height: auto; }
+  .left-panel { border-right: none; border-bottom: 1px solid #22283d; }
+}

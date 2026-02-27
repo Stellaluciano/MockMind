@@ -1,0 +1,21 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'>
+  <defs>
+    <linearGradient id='bg' x1='0' x2='1' y1='0' y2='1'>
+      <stop offset='0%' stop-color='hsl(35, 60%, 28%)'/>
+      <stop offset='100%' stop-color='hsl(75, 45%, 14%)'/>
+    </linearGradient>
+    <radialGradient id='skin' cx='45%' cy='36%'>
+      <stop offset='0%' stop-color='#f8d7c5'/>
+      <stop offset='100%' stop-color='#c58e75'/>
+    </radialGradient>
+  </defs>
+  <rect width='1024' height='1024' fill='url(#bg)'/>
+  <ellipse cx='512' cy='972' rx='300' ry='260' fill='rgba(15,15,20,0.5)'/>
+  <path d='M290 860c10-180 100-270 220-270s210 90 220 270' fill='#1d2538'/>
+  <ellipse cx='512' cy='390' rx='195' ry='240' fill='url(#skin)'/>
+  <ellipse cx='435' cy='378' rx='22' ry='14' fill='#1f1f1f'/>
+  <ellipse cx='589' cy='378' rx='22' ry='14' fill='#1f1f1f'/>
+  <path d='M450 510c34 30 90 30 124 0' stroke='#7f3c3c' stroke-width='15' fill='none' stroke-linecap='round'/>
+  <path d='M344 330c35-140 302-190 352 25-35-55-88-85-176-85-80 0-120 28-176 60z' fill='#2f2b30'/>
+  <text x='512' y='945' text-anchor='middle' fill='rgba(255,255,255,0.75)' font-family='Inter, Arial' font-size='42'>Interview Avatar 1</text>
+</svg>
